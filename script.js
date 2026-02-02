@@ -82,50 +82,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 /* ---------- TRACKS CAROUSEL LOGIC ---------- */
+const cards = [...document.querySelectorAll('.track-card')];
+const prevBtn = document.querySelector('.carousel-btn.left');
+const nextBtn = document.querySelector('.carousel-btn.right');
 
-const wrapper = document.querySelector('.tracks-track-wrapper');
-const cards = document.querySelectorAll('.track-card');
-const prev = document.querySelector('.carousel-btn.left');
-const next = document.querySelector('.carousel-btn.right');
-
-let index = 0;
-let autoRotate;
+let current = 1;
+let auto;
 
 function updateCarousel() {
-    wrapper.style.transform = `translateX(-${index * 100}%)`;
+  cards.forEach((card, i) => {
+    card.classList.remove('active', 'left', 'right', 'flipped');
+
+    if (i === current) card.classList.add('active');
+    else if (i === current - 1 || (current === 0 && i === cards.length - 1))
+      card.classList.add('left');
+    else if (i === current + 1 || (current === cards.length - 1 && i === 0))
+      card.classList.add('right');
+  });
+
+  const offset = (current - 1) * -320;
+  document.querySelector('.carousel-track').style.transform =
+    `translateX(${offset}px)`;
 }
 
-function startAutoRotate() {
-    autoRotate = setInterval(() => {
-        index = (index + 1) % cards.length;
-        updateCarousel();
-    }, 5000);
+function next() {
+  current = (current + 1) % cards.length;
+  updateCarousel();
 }
 
-function resetAutoRotate() {
-    clearInterval(autoRotate);
-    startAutoRotate();
+function prev() {
+  current = (current - 1 + cards.length) % cards.length;
+  updateCarousel();
 }
 
-/* Buttons */
-next.addEventListener('click', () => {
-    index = (index + 1) % cards.length;
-    updateCarousel();
-    resetAutoRotate();
+cards.forEach((card, i) => {
+  card.addEventListener('click', () => {
+    if (i === current) card.classList.toggle('flipped');
+  });
 });
 
-prev.addEventListener('click', () => {
-    index = (index - 1 + cards.length) % cards.length;
-    updateCarousel();
-    resetAutoRotate();
-});
+prevBtn.onclick = () => { prev(); resetAuto(); };
+nextBtn.onclick = () => { next(); resetAuto(); };
 
-/* Flip on click */
-cards.forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
-    });
-});
+function startAuto() {
+  auto = setInterval(next, 5000);
+}
+function resetAuto() {
+  clearInterval(auto);
+  startAuto();
+}
 
-/* Start auto rotation */
-startAutoRotate();
+updateCarousel();
+startAuto();

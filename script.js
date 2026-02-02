@@ -82,55 +82,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 /* ---------- TRACKS CAROUSEL LOGIC ---------- */
-const cards = [...document.querySelectorAll('.track-card')];
-const prevBtn = document.querySelector('.carousel-btn.left');
-const nextBtn = document.querySelector('.carousel-btn.right');
+const trackCards = document.querySelectorAll('.track-card');
+const details = document.getElementById('track-details');
 
-let current = 1;
-let auto;
+const trackData = [
+  {
+    title: 'Horizon',
+    text: 'Explore futuristic ideas, emerging tech, and bold solutions that shape what’s next.'
+  },
+  {
+    title: 'AI & Data',
+    text: 'Build intelligent systems using machine learning, analytics, and real-world data.'
+  },
+  {
+    title: 'Sustainability',
+    text: 'Design eco-friendly solutions focused on climate, energy, and social impact.'
+  }
+];
 
-function updateCarousel() {
-  cards.forEach((card, i) => {
-    card.classList.remove('active', 'left', 'right', 'flipped');
-
-    if (i === current) card.classList.add('active');
-    else if (i === current - 1 || (current === 0 && i === cards.length - 1))
-      card.classList.add('left');
-    else if (i === current + 1 || (current === cards.length - 1 && i === 0))
-      card.classList.add('right');
-  });
-
-  const offset = (current - 1) * -320;
-  document.querySelector('.carousel-track').style.transform =
-    `translateX(${offset}px)`;
-}
-
-function next() {
-  current = (current + 1) % cards.length;
-  updateCarousel();
-}
-
-function prev() {
-  current = (current - 1 + cards.length) % cards.length;
-  updateCarousel();
-}
-
-cards.forEach((card, i) => {
+trackCards.forEach(card => {
   card.addEventListener('click', () => {
-    if (i === current) card.classList.toggle('flipped');
+    // remove active
+    trackCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+
+    const i = card.dataset.track;
+
+    // animate details
+    details.style.opacity = '0';
+    details.style.transform = 'translateY(10px)';
+
+    setTimeout(() => {
+      details.innerHTML = `
+        <h3>${trackData[i].title}</h3>
+        <p>${trackData[i].text}</p>
+      `;
+      details.style.opacity = '1';
+      details.style.transform = 'translateY(0)';
+    }, 200);
   });
 });
-
-prevBtn.onclick = () => { prev(); resetAuto(); };
-nextBtn.onclick = () => { next(); resetAuto(); };
-
-function startAuto() {
-  auto = setInterval(next, 5000);
-}
-function resetAuto() {
-  clearInterval(auto);
-  startAuto();
-}
-
-updateCarousel();
-startAuto();

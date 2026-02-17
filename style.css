@@ -14,12 +14,25 @@
     --glass: rgba(255,255,255,0.03);
 }
 
+/* AVOID MOBILE HORIZONTAL SCROLL*/
+html,body{
+    width:100%;
+    overflow-x:hidden;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    color: var(--muted-text);
-    background: radial-gradient(1200px 600px at 10% 10%, rgba(57,255,20,0.06), transparent 10%),
-                linear-gradient(180deg, var(--bg-deep), var(--bg-dark));
-    background-attachment: fixed;
+    
+ /*BACKGROUND*/
+ font-family:'Inter',sans-serif;
+  color:var(--muted-text);
+
+  background:
+    url("images/background.svg") center/cover no-repeat,
+    radial-gradient(1200px 600px at 10% 10%, rgba(57,255,20,0.06), transparent 10%),
+    linear-gradient(180deg, var(--bg-deep), var(--bg-dark));
+
+  background-attachment: fixed;
+
 }
 
 /* ---------- TOP BAR ---------- */
@@ -55,8 +68,8 @@ body {
     color: var(--neon-green);
 }
 .social-icon {
-    width: 42px;
-    height: 42px;
+    width: 54px;
+    height: 54px;
     display: inline-block;
     object-fit: contain;
     filter: drop-shadow(0 6px 14px rgba(57,255,20,0.08));
@@ -71,38 +84,7 @@ body {
     .social-icon { width: 32px; height: 32px; }
 }
 
-/* NAV PILL */
-.nav-pill {
-    background: transparent;
-    border: 2px solid rgba(255, 20, 147, 0.7);
-    box-shadow: 0 0 15px rgba(255, 20, 147, 0.4), inset 0 0 15px rgba(255, 20, 147, 0.05);
-    padding: 14px 36px;
-    border-radius: 50px;
-    display: flex;
-    gap: 28px;
-    max-width: calc(100% - 140px);
-    margin: 0 auto;
-    z-index: 2;
-    align-items: center;
-    white-space: nowrap;
-    backdrop-filter: blur(10px);
-}
-
-.nav-pill a {
-    color: #ff69b4;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: 1.5px;
-    transition: all 0.3s;
-    text-shadow: 0 0 8px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 20, 147, 0.5);
-}
-
-.nav-pill a:hover {
-    color: #ff1493;
-    text-shadow: 0 0 12px rgba(255, 20, 147, 1), 0 0 30px rgba(255, 20, 147, 0.8);
-    letter-spacing: 2px;
-}
+/* NAV PILL DELETED*/
 
 /* MLH */
 .mlh img {
@@ -805,4 +787,48 @@ button.apply-btn:hover,
     0 0 22px rgba(0,255,170,0.55),
     0 0 46px rgba(0,240,255,0.35);
   transform: translateY(-14px);
+}
+
+/*MOBILE OVERRIDES*/
+
+
+@media (max-width:768px){
+  html,body{ overflow-x:hidden; }
+
+  body{ background-attachment: scroll; }
+
+  /* header/nav */
+  .top-bar{
+    position: sticky;
+    top: 0;
+    height: auto;
+    padding: 10px 12px;
+    background: rgba(3,4,11,0.55);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+  }
+
+  .socials{
+    position: static;
+    transform: none;
+    margin-right: auto;
+  }
+
+  .nav-pill{
+    max-width: 100%;
+    padding: 8px 12px;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mlh{
+    position: static;
+    margin-left: auto;
+  }
+
+  .mlh img{
+    max-width: 92px;
+    max-height: 70px;
+  }
 }

@@ -24,6 +24,7 @@
 <body>
 
 <div class = "bg-strp">
+
 <!-- TOP BAR -->
 <div class="top-bar">
     <div class="socials">
@@ -46,11 +47,20 @@
     <a class="nav-link nav-link--shine" href="#applynow">APPLY NOW</a>
 
     <!-- MOBILE DROPDOWN BUTTON -->
-    <a class="mobile-menu-btn" href="#">
-        <img src="images/logos/drop_down.png" alt="Menu">
-    </a>
-    
+    <a class="mobile-menu-btn" href="#" id="mobileMenuBtn">
+    <img src="images/logos/drop_down.png" alt="Menu">
+</a>
+
 </nav>
+    <!-- MOBILE MENU POPUP -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <div class="mobile-menu-popup" id="mobileMenuPopup" aria-hidden="true">
+    <a class="mobile-menu-link" href="#about">ABOUT</a>
+    <a class="mobile-menu-link" href="#tracks">TRACKS</a>
+    <a class="mobile-menu-link" href="#sponsors">SPONSORS</a>
+    <a class="mobile-menu-link" href="#faq">FAQ</a>
+</div>
 
     <!--MLH symbol-->
     <a class="mlh" href="https://mlh.io" target="_blank">

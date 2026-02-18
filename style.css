@@ -340,39 +340,6 @@ body {
 }
 
 
-
-/* COUNTDOWN TEMPORARILY REMOVED
-#countdown {
-    margin: 30px 0;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
-
-
-#countdown div {
-    background: rgba(10,6,20,0.32);
-    padding: 15px 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(0,240,255,0.06);
-    box-shadow: 0 8px 30px rgba(57,255,20,0.03), 0 0 18px rgba(0,240,255,0.02);
-}
-
-#countdown span {
-    font-size: 30px;
-    font-weight: bold;
-    display: block;
-}
-
-/* Countdown numbers: bright yellow 
-#countdown span { color: #FFEC4E; text-shadow: 0 0 10px rgba(255,236,78,0.35); }
-
-#countdown small {
-    font-size: 12px;
-    opacity: 0.7;
-}
-*/
-
 /* BUTTON */
 
 /* FADE-IN ANIMATION */
@@ -573,6 +540,63 @@ body {
     transform: scale(0.9);
     opacity: 0.7;
 }
+
+/*------------ MOBILE MENU POPUP (mobile only)--------------- */
+.mobile-menu-overlay,
+.mobile-menu-popup{
+    display: none;
+}
+
+@media (max-width:768px){
+
+    .mobile-menu-overlay{
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.35);
+        z-index: 9998;
+    }
+
+    .mobile-menu-popup{
+        display: none;
+        position: fixed;
+
+        top: 70px;               /* below top bar */
+        left: 50%;
+        transform: translateX(-10%);
+
+        width: min(200px, 50vw);/*Tweak Pop up box width*/
+        padding: 14px 14px;
+
+        background: rgba(255,255,255,0.95);
+        border-radius: 16px;
+
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        z-index: 9999;
+    }
+
+    .mobile-menu-popup.is-open,
+    .mobile-menu-overlay.is-open{
+        display: block;
+    }
+
+    .mobile-menu-link{
+        display: block;
+        padding: 10px 12px;
+
+        font-family: 'HK Modular','Orbitron',sans-serif; /* HK Modular first */
+        color: #000;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .mobile-menu-link:active{
+        opacity: 0.7;
+    }
+}
+
 
 
     /* SOCIALS MOBILE */

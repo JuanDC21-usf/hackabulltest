@@ -299,7 +299,7 @@ button:hover {
     filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
 }
 
-/* ---------- TRACKS ---------- */
+/*  TRACKS */
 .tracks-inner .tracks-logo{
     height: clamp(120px, 50vw, 600px);
     width: auto;
@@ -310,6 +310,28 @@ button:hover {
     object-fit: contain;
 
     filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
+}
+
+/* TRACK SYMBOLS  */
+
+.symbols-inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+
+  flex-wrap: wrap;          /* allows wrap if screen is narrow */
+  margin-top: 26px;         /* space under Tracks.png */
+}
+
+.symbol-logo{
+  height: clamp(90px, 14vw, 170px);  /* responsive size */
+  width: auto;
+
+  display: block;
+  object-fit: contain;
+
+  filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
 }
 
 
@@ -631,6 +653,30 @@ button:hover {
 
     display: block;
 }
+
+    /* TRACK SYMBOLS - MOBILE */
+    .symbols-inner{
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 22px;
+    
+    /* optional: force a 2x2 grid look */
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .symbol-logo{
+    height: clamp(70px, 22vw, 120px);
+    width: auto;
+
+    /* stronger glow on mobile if you want */
+    filter:
+        drop-shadow(0 0 10px rgba(57,255,20,0.35))
+        drop-shadow(0 0 18px rgba(0,240,255,0.18));
+}
+
+
 
 }
 

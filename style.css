@@ -92,9 +92,6 @@ body {
     filter: drop-shadow(0 0 14px rgba(57,255,20,0.85));
     opacity: 0.98;
 }
-@media (max-width: 420px) {
-    .social-icon { width: 32px; height: 32px; }
-}
 
 /* NAV PILL DELETED*/
 
@@ -742,56 +739,67 @@ button.apply-btn:hover,
 
 
 @media (max-width:768px){
-  html,body{ overflow-x:hidden; }
 
-  body{ background-attachment: scroll; }
+    /*BACKGROUND MOBILE*/
+    html,body{ overflow-x:hidden; }
 
-  /* header/nav */
-  .top-bar{
-    position: sticky;
-    top: 0;
-    height: auto;
-    padding: 10px 12px;
-    background: rgba(3,4,11,0.55);
-    backdrop-filter: blur(10px);
-    z-index: 9999;
+    body{ background-attachment: scroll; }
+
+    .bg-strp{
+    background-size: 210% auto;   /* zoom in */
+    background-position: top center;
   }
 
-  .socials{
+
+    /*SOCIALS MOBILE*/
+
+/* HIDE LinkedIn and Instagram on mobile */
+.social-icon[src*="linkedin"],
+.social-icon[src*="instagram"]{
+    display: none;
+}
+
+}
+
+
+    .socials{
     position: static;
     transform: none;
     margin-right: auto;
-  }
+}
 
-  .nav-pill{
-    max-width: 100%;
-    padding: 8px 12px;
-    gap: 10px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+    .social-icon{
+        width: 80px;
+        height: 80px;
+}
 
-  .mlh{
+    /*MLH MOBILE*/
+    .mlh{
     position: static;
     margin-left: auto;
-  }
-
-  .mlh img{
-    max-width: 92px;
-    max-height: 70px;
-  }
-
-  /*MEDIA QUERIES FOR TITLE*/
-    .hero-content{
-        padding-top: clamp(40px, 6vw, 120px);  /* moves entire title UP */
-  }
-
-    .hero-content .site-logo{
-        margin-left: 0px;   /* moves LEFT */
-        margin-top: -180px;    /* moves UP */
-  }
-
 }
+
+.mlh img{
+    height: 150px;   /* increase this */
+    width: auto;     
+}
+
+
+    /*HERO MOBILE*/
+
+    .hero{
+    padding-top: 140px;     /* try 90–140px */
+  }
+  
+
+    /*SITE LOGO MOBILE*/
+    .hero-content .site-logo{
+
+        height: clamp(180px, 100vw, 420px);  /* BIGGER title */
+        margin-left: -20px;   /* moves LEFT */
+        margin-top: -160px;    /* moves UP */
+  }
+
 
 
 

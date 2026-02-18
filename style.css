@@ -14,7 +14,7 @@
     --glass: rgba(255,255,255,0.03);
 }
 
-/* SHINY TEXT CLASS */
+/*----------------- FONT SHINY TEXT CLASSES---------------- */
 
 .text-shine-white{
     color: #ffffff;
@@ -43,8 +43,37 @@
 }
 
 
+
 /* optional hover enhancement */
 .text-shine-white:hover{
+    text-shadow:
+        0 0 18px rgba(255,255,255,1),
+        0 0 40px rgba(255,255,255,0.80),
+        0 0 60px rgba(255,255,255,0.40);
+
+    transform: translateY(-2px);
+}
+
+/* SHINY TEXT CLASS — POPPINS VERSION */
+
+.text-shine-white-poppins{
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif; /* ONLY change from HK Modular */
+
+    font-weight: 900;
+    letter-spacing: -0.6px;
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.80),
+        0 0 30px rgba(255,255,255,0.50);
+
+    transition: all 0.35s ease;
+}
+
+/* optional hover enhancement (same as original) */
+.text-shine-white-poppins:hover{
     text-shadow:
         0 0 18px rgba(255,255,255,1),
         0 0 40px rgba(255,255,255,0.80),
@@ -62,7 +91,7 @@ html,body{
 
 body {
     
- /*BACKGROUND*/
+ /*----------------------BACKGROUND----------------------------------------*/
     font-family:'Inter',sans-serif;
         color:var(--muted-text);
         background: linear-gradient(180deg, var(--bg-deep), var(--bg-dark)); /* fallback */
@@ -378,20 +407,50 @@ body {
         gap: 15px;
     }
 
-/* ---------- ABOUT ---------- */
+/* ---------- ABOUT SECTION ---------- */
+.about-section{
+  position: relative;
+  padding: 60px 20px;   /* overall spacing around the section */
+  text-align: center;
+}
+
+.about-inner{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* title line (this is the underlined bold shiny white) */
+.about-title{
+  display: inline-block;     /* makes underline fit the word */
+  font-size: 34px;           /* DESKTOP SIZE CONTROL */
+  margin-top: 10px;          /* DESKTOP MOVE CONTROL (down/up) */
+  transform: translateX(0px) translateY(0px); /* DESKTOP MOVE CONTROL */
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 3px;
+}
+
+/* optional paragraph */
+.about-text{
+  margin-top: 18px;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
 
 
 /*  TRACKS */
-.tracks-inner .tracks-logo{
-    height: clamp(120px, 50vw, 600px);
-    width: auto;
 
-    display: block;
-    margin: 0 auto 40px;
 
-    object-fit: contain;
+.tracks-title{
+  display: inline-block;     /* underline fits the word */
+  font-size: 40px;           /* DESKTOP SIZE CONTROL */
+  margin-top: 0px;           /* DESKTOP MOVE CONTROL */
+  transform: translateX(0px) translateY(0px); /* DESKTOP MOVE CONTROL */
 
-    filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 3px;
 }
 
 /* TRACK SYMBOLS  */
@@ -400,7 +459,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 28px;
+  gap: 26px;
 
   flex-wrap: wrap;          /* allows wrap if screen is narrow */
   margin-top: 26px;         /* space under Tracks.png */
@@ -669,24 +728,39 @@ body {
     /* transform: translateX(10px) translateY(-6px); */
 }
 
+/* ---------- ABOUT SECTION MOBILE ---------- */
+.about-section{
+  padding: 50px 16px;
+}
+
+.about-title{
+  font-size: 32px;  /* MOBILE SIZE CONTROL */
+  margin-top: 0px;  /* MOBILE MOVE CONTROL */
+  transform: translateX(50px) translateY(-150px); /* MOBILE MOVE CONTROL */
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
+}
+
+.about-text{
+  font-size: 16px;
+}
 
 
-    /* TRACKS PNG MOBILE */
-    .tracks-inner .tracks-logo{
-    height: clamp(50px, 45vw, 500px);
-    width: auto;
+/* ---------- TRACKS TITLE (TEXT) MOBILE ---------- */
+.tracks-title{
+  font-size: 32px;   /* MOBILE SIZE CONTROL */
+  margin-top: 0px;   /* MOBILE MOVE CONTROL */
+  transform: translateX(40px) translateY(360px); /* MOBILE MOVE CONTROL */
 
-    margin-left: 150px;
-    margin-top: 170px;
-
-    display: block;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
 }
 
     /* TRACK SYMBOLS - MOBILE */
     .symbols-inner{
     flex-direction: column;
-    gap: 22px;
-    margin-top: 22px;
+    gap: 0px;
+    margin-top: 350px;
     
     /* optional: force a 2x2 grid look */
     max-width: 92%;
@@ -695,7 +769,7 @@ body {
 }
 
     .symbol-logo{
-    height: clamp(70px, 22vw, 120px);
+    height: clamp(100px, 100vw, 400px);
     width: auto;
 
     /* stronger glow on mobile if you want */
@@ -707,5 +781,4 @@ body {
 
 
 }
-
 

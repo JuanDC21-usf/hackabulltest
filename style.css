@@ -339,6 +339,20 @@ body {
     margin-top: 6px;   /* proper spacing under first line */
 }
 
+/* SHPE LOGO (DESKTOP DEFAULT) */
+.shpe-logo{
+    height: 70px;          /* resize this */
+    width: auto;
+
+    display: block;
+    margin: 14px auto 0;   /* move it (top / left-right / bottom) */
+
+    /* optional: extra positioning control */
+    /* transform: translateX(0px) translateY(0px); */
+
+    filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
+}
+
 
 /* BUTTON */
 
@@ -366,17 +380,6 @@ body {
 
 /* ---------- ABOUT ---------- */
 
-.about-inner .about-logo{
-    height: clamp(120px, 50vw, 600px);  /* same responsive scaling */
-    width: auto;
-
-    display: block;
-    margin: 0 auto 40px auto;  /* centered, space below */
-
-    object-fit: contain;
-
-    filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
-}
 
 /*  TRACKS */
 .tracks-inner .tracks-logo{
@@ -445,6 +448,10 @@ body {
    SHPE BUTTON – FLOATING NEON GLASS DELETED
 */
 
+.mobile-menu-overlay,
+.mobile-menu-popup{
+    display: none !important;   /* ONLY CHANGE #1 */
+}
 /*----------------MOBILE OVERRIDES----------------------------*/
 
 @media (max-width:768px){
@@ -542,12 +549,6 @@ body {
 }
 
 /*------------ MOBILE MENU POPUP (mobile only)--------------- */
-.mobile-menu-overlay,
-.mobile-menu-popup{
-    display: none;
-}
-
-@media (max-width:768px){
 
     .mobile-menu-overlay{
         display: none;
@@ -577,7 +578,7 @@ body {
 
     .mobile-menu-popup.is-open,
     .mobile-menu-overlay.is-open{
-        display: block;
+        display: block !important;   /* ONLY CHANGE #2 */
     }
 
     .mobile-menu-link{
@@ -595,8 +596,6 @@ body {
     .mobile-menu-link:active{
         opacity: 0.7;
     }
-}
-
 
 
     /* SOCIALS MOBILE */
@@ -655,25 +654,22 @@ body {
     opacity: 0.95;
 }
 
-    /* HERO DATE MOBILE FIX */
+    /* HERO SUBTITLE 2 DATE MOBILE FIX */
     .hero-tagline.text-shine-red{
         margin-top: 6px;
         margin-left: 25px;
     }
 
+    /* SHPE LOGO MOBILE */
+    .shpe-logo{
+    height: 200px;           /* resize for mobile */
+    margin: 150px auto 0;    /* move it on mobile */
+    
+    /* optional fine-tune */
+    /* transform: translateX(10px) translateY(-6px); */
+}
 
-    /* ABOUT LOGO MOBILE */
 
-    .about-inner .about-logo{
-        height: clamp(50px, 85vw, 500px);
-        width: auto;
-
-        margin-left: 30px;
-        margin-top: -200px;
-
-        display: block;
-
-    }
 
     /* TRACKS PNG MOBILE */
     .tracks-inner .tracks-logo{

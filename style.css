@@ -23,18 +23,25 @@ html,body{
 body {
     
  /*BACKGROUND*/
- font-family:'Inter',sans-serif;
-  color:var(--muted-text);
-
-  background:
-    url("images/background.svg") center/cover no-repeat,
-    radial-gradient(1200px 600px at 10% 10%, rgba(57,255,20,0.06), transparent 10%),
-    linear-gradient(180deg, var(--bg-deep), var(--bg-dark));
-
-  background-attachment: fixed;
-
+    font-family:'Inter',sans-serif;
+        color:var(--muted-text);
+        background: linear-gradient(180deg, var(--bg-deep), var(--bg-dark)); /* fallback */
 }
 
+/*Big strip*/
+.bg-strp{
+  /* Long SVG */
+  background-image: url("images/background.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;      /* full width, keep aspect */
+  background-position: top center;  /* start at top */
+  
+  /* make container tall enough to show the full strip */
+  min-height: 337.5vw; 
+
+  position: relative;
+
+}
 /* ---------- TOP BAR ---------- */
 
 .top-bar {
@@ -50,26 +57,31 @@ body {
 }
 
 .socials {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: fixed;      /* keeps them anchored */
+    top: 12px;            /* distance from top */
+    left: 12px;           /* distance from left */
+    
     display: flex;
     align-items: center;
+    
+    gap: 2px;             /* VERY close spacing */
+    
+    z-index: 9999;        /* make sure nothing covers them */
 }
 
-.socials a {
-    margin-right: 8px;
-    transition: transform 0.18s, opacity 0.18s;
+.socials a { /*SPACING BETWEEN SOCIAL ICONS*/
+    margin: 0;
+    padding: 0;
 }
 
 .socials a:hover {
     transform: scale(1.2);
     color: var(--neon-green);
 }
-.social-icon {
-    width: 54px;
-    height: 54px;
+
+.social-icon {  /*Images for social logos*/
+    width: 84px;
+    height: 84px;
     display: inline-block;
     object-fit: contain;
     filter: drop-shadow(0 6px 14px rgba(57,255,20,0.08));
@@ -127,138 +139,75 @@ body {
 
 /* ---------- HERO ---------- */
 
-.hero {
-    position: relative;
-    height: 100vh;
-    background:
-        linear-gradient(180deg, rgba(12,2,30,0.22), rgba(0,8,20,0.22)),
-        url("images/city.jpg") center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
+.hero{
+  position: relative;
+  min-height: 100vh;           /
+  background: none;            /* allow png strip background to show */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;     
+  text-align: center;
+  overflow: hidden;
+
+  /* responsive top spacing so logo sits in the right zone */
+  padding-top: clamp(90px, 12vw, 220px);
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* reduced dark overlay so background video is brighter */
-    background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.32));
-    z-index: 1;
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.32));
+  z-index:1;
 }
 
-.hero-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    pointer-events: none;
+.hero-content{
+  position: relative;          
+  z-index: 3;
+
+  background: transparent;
+  padding: 22px 30px;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+
+  max-width: 95%;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 3;
-    /* no background panel (transparent) */
-    background: transparent;
-    padding: 22px 30px;
-    border-radius: 0;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-    max-width: 95%;
+
+.hero-content h1{
+  line-height: 1;
+  margin: 0;                   /* prevent extra spacing */
 }
 
-.hero-content h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 80px;
-    font-weight: 700;
-    letter-spacing: 6px;
-    /* neon gradient fill */
-    background: linear-gradient(90deg, rgba(57,255,20,1), rgba(182,255,184,0.95), rgba(0,240,255,0.95));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    position: relative;
-    /* heavy neon glow layers */
-    text-shadow:
-        0 0 6px rgba(57,255,20,0.95),
-        0 0 18px rgba(57,255,20,0.85),
-        0 0 36px rgba(0,240,255,0.65),
-        0 8px 40px rgba(0,0,0,0.6);
-    animation: neonFlicker 3s infinite ease-in-out;
+
+.hero-content .site-logo{
+  height: clamp(120px, 50vw, 600px);  /* responsive size */
+  width: auto;
+  display: block;
+  margin: 0 auto 12px;               /* REMOVE the negative margin */
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
 }
 
-/* reduce the line box around the heading so image sits tighter to following content */
-.hero-content h1 { line-height: 1; }
-
-.hero-content span {
-    color: var(--neon-cyan);
+/* optional: mobile readability boost */
+@media (max-width:768px){
+  .hero-content{
+    padding: 16px 14px;
+  }
+  .hero-content .site-logo{
+    filter: drop-shadow(0 0 14px rgba(57,255,20,0.55))
+            drop-shadow(0 0 24px rgba(0,240,255,0.25));
+  }
 }
 
-/* Logo image used in the hero instead of text */
-.hero-content .site-logo {
-    /* smaller, balanced logo sizes to avoid overwhelming the hero */
-    max-height: 160px;
-    max-width: 56vw;
-    width: auto;
-    display: block;
-    margin: 0 auto 12px;
-    object-fit: contain;
-    filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
+.hero-content h2{
+  margin-top: 10px;
+  font-size: 26px;
+  letter-spacing: 2px;
 }
 
-@media (min-width: 1600px) {
-    .hero-content .site-logo { max-height: 200px; max-width: 48vw; }
-}
-@media (max-width: 1440px) {
-    .hero-content .site-logo { max-height: 180px; max-width: 58vw; }
-}
-@media (max-width: 1024px) {
-    .hero-content .site-logo { max-height: 140px; max-width: 72vw; }
-}
-@media (max-width: 768px) {
-    .hero-content .site-logo { max-height: 110px; max-width: 86vw; }
-}
-@media (max-width: 420px) {
-    .hero-content .site-logo { max-height: 80px; max-width: 92vw; }
-}
-
-/* soft halo behind the heading to enhance neon effect */
-.hero-content h1::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 140%;
-    height: 60%;
-    background: radial-gradient(closest-side, rgba(57,255,20,0.14), transparent 40%);
-    filter: blur(20px);
-    z-index: -1;
-}
-
-@keyframes neonFlicker {
-    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; text-shadow: 0 0 6px rgba(57,255,20,0.95), 0 0 18px rgba(57,255,20,0.85), 0 0 36px rgba(0,240,255,0.65); }
-    20%, 24%, 55% { opacity: 0.85; text-shadow: 0 0 4px rgba(57,255,20,0.6), 0 0 12px rgba(57,255,20,0.45), 0 0 20px rgba(0,240,255,0.35); }
-}
-
-.hero-content h2 {
-    margin-top: 10px;
-    font-size: 26px;
-    letter-spacing: 2px;
-}
-
-/* GLOW EFFECT */
-.glow {
-    text-shadow:
-        0 0 6px rgba(57,255,20,0.95),
-        0 0 18px rgba(0,240,255,0.65),
-        0 0 36px rgba(110,242,184,0.45);
-}
 
 /* COUNTDOWN */
 #countdown {
@@ -831,4 +780,20 @@ button.apply-btn:hover,
     max-width: 92px;
     max-height: 70px;
   }
+
+  /*MEDIA QUERIES FOR TITLE*/
+    .hero-content{
+        padding-top: clamp(40px, 6vw, 120px);  /* moves entire title UP */
+  }
+
+    .hero-content .site-logo{
+        margin-left: 0px;   /* moves LEFT */
+        margin-top: -180px;    /* moves UP */
+  }
+
 }
+
+
+
+
+

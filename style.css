@@ -51,7 +51,7 @@
         0 0 40px rgba(255,255,255,0.80),
         0 0 60px rgba(255,255,255,0.40);
 
-    transform: translateY(-2px);
+    /*transform: translateY(-2px);*/
 }
 
 /* SHINY TEXT CLASS — POPPINS VERSION */
@@ -59,15 +59,15 @@
 .text-shine-white-poppins{
     color: #ffffff;
 
-    font-family: 'Poppins', sans-serif; /* ONLY change from HK Modular */
+    font-family: 'Poppins', sans-serif;
 
     font-weight: 900;
     letter-spacing: -0.6px;
-    text-transform: uppercase;
+    text-transform: none;
 
     text-shadow:
-        0 0 12px rgba(255,255,255,0.80),
-        0 0 30px rgba(255,255,255,0.50);
+        0 0 4px rgba(255,255,255,0.35),
+        0 0 10px rgba(255,255,255,0.18);
 
     transition: all 0.35s ease;
 }
@@ -79,7 +79,7 @@
         0 0 40px rgba(255,255,255,0.80),
         0 0 60px rgba(255,255,255,0.40);
 
-    transform: translateY(-2px);
+    /*transform: translateY(-2px);*/
 }
 
 
@@ -360,7 +360,10 @@ body {
     transform: translateX(-10px);
 
     opacity: 0.95;
+
 }
+
+
 
 /* HERO DATE SUBTITLE 2 DATE */
 
@@ -430,6 +433,58 @@ body {
   text-decoration-thickness: 3px;
 }
 
+/* ---------- ABOUT PILLS (DESKTOP) ---------- */
+/* group wrapper (easy to move as a whole) */
+.about-pills--pos{
+  margin: 40px 0 30px; /* extracted spacing */
+  transform: translateX(0px) translateY(0px); /* MOVE ALL 4 (DESKTOP) */
+}
+
+/* extracted layout */
+.about-pills{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* extracted button look  */
+.pill-btn{
+  background: transparent;
+  border: 2px solid #ff2d78;       /* RED OUTLINE */
+  border-radius: 50px;
+  padding: 14px 32px;
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  letter-spacing: 0.5px;
+}
+
+/* extracted hover effect */
+.pill-btn:hover{
+  background: #ff2d78;
+  box-shadow: 0 0 20px rgba(255, 45, 120, 0.5);
+  /*transform: translateY(-0.25px);*/
+}
+
+/* ---------- ABOUT PILLS INDIVIDUAL MOVE/RESIZE (DESKTOP) ---------- */
+/* Move each pill independently */
+.pill-btn--1{ transform: translateX(0px) translateY(0px); }
+.pill-btn--2{ transform: translateX(0px) translateY(0px); }
+.pill-btn--3{ transform: translateX(0px) translateY(0px); }
+.pill-btn--4{ transform: translateX(0px) translateY(0px); }
+
+/* Resize each pill independently (width optional) */
+.pill-btn--1{ font-size: 16px; padding: 14px 32px; }
+.pill-btn--2{ font-size: 16px; padding: 14px 32px; }
+.pill-btn--3{ font-size: 16px; padding: 14px 32px; }
+.pill-btn--4{ font-size: 16px; padding: 14px 32px; }
+
 /* optional paragraph */
 .about-text{
   margin-top: 18px;
@@ -453,27 +508,8 @@ body {
   text-decoration-thickness: 3px;
 }
 
-/* TRACK SYMBOLS  */
 
-.symbols-inner{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 26px;
-
-  flex-wrap: wrap;          /* allows wrap if screen is narrow */
-  margin-top: 26px;         /* space under Tracks.png */
-}
-
-.symbol-logo{
-  height: clamp(90px, 14vw, 170px);  /* responsive size */
-  width: auto;
-
-  display: block;
-  object-fit: contain;
-
-  filter: drop-shadow(0 6px 14px rgba(57,255,20,0.10));
-}
+/* TRACK SYMBOLS (DESKTOP) */
 
 
 /* ---------- SPONSORS ---------- */
@@ -528,14 +564,14 @@ body {
 
     /* BACKGROUND MOBILE */
 
-  .bg-strp{
-    background-size: 210% auto;
-    background-position: top center;
 
-    /* scale height to match the zoom */
-    min-height: calc(100vw * 2048 / 491 * 2.10);
-  }
+.bg-strp{
+  background-size: 180% auto;
+  background-position: top center;
 
+  /* IMPORTANT: match height to the same zoom factor (1.8) */
+  min-height: calc(100vw * 2048 / 491 * 1.8);
+}
     /*TOP BAR MOBILE*/
     .top-bar{
     justify-content: space-between;
@@ -712,12 +748,23 @@ body {
     font-size: clamp(18px, 2.2vw, 32px);
     opacity: 0.95;
 }
+/*HERO SUBTITLE 1 READY HOVER*/
+    .hero-tagline:hover{
+    text-shadow:
+        0 0 18px rgba(255,255,255,1),
+        0 0 40px rgba(255,255,255,0.80),
+        0 0 60px rgba(255,255,255,0.40);
+
+    transform: translateY(-2px);
+}
 
     /* HERO SUBTITLE 2 DATE MOBILE FIX */
     .hero-tagline.text-shine-red{
         margin-top: 6px;
         margin-left: 25px;
     }
+
+    
 
     /* SHPE LOGO MOBILE */
     .shpe-logo{
@@ -736,49 +783,66 @@ body {
 .about-title{
   font-size: 32px;  /* MOBILE SIZE CONTROL */
   margin-top: 0px;  /* MOBILE MOVE CONTROL */
-  transform: translateX(50px) translateY(-150px); /* MOBILE MOVE CONTROL */
+  transform: translateX(20px) translateY(-50px); /* MOBILE MOVE CONTROL */
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
 }
 
 .about-text{
   font-size: 16px;
+  
 }
+
+
+ /* ---------- ABOUT DESCRIPTION TEXT (MOBILE CONTROL) ---------- */
+  .about-description{
+
+    font-size: 16px;   /* RESIZE TEXT (MOBILE) */
+
+    max-width: 85%;    /* controls line width */
+
+    margin: 12px auto; /* spacing above/below */
+
+    transform: translateX(20px) translateY(-50px);  /* MOVE POSITION (MOBILE) */
+
+    line-height: 1.6;  /* vertical spacing between lines */
+
+    text-align: center;
+
+  }
+
+
+/* ---------- ABOUT PILLS (MOBILE) ---------- */
+.about-pills--pos{
+  margin: 28px 0 20px;
+  transform: translateX(0px) translateY(0px); /* MOVE ALL 4 (MOBILE) */
+}
+
+.pill-btn{
+  font-size: 14px;     /* MOBILE SIZE */
+  padding: 12px 26px;  /* MOBILE PADDING */
+}
+
+/* ---------- INDIVIDUAL MOVE/RESIZE (MOBILE) ---------- */
+.pill-btn--1{ transform: translateX(0px) translateY(-50px); font-size: 14px; padding: 12px 26px; }
+.pill-btn--2{ transform: translateX(0px) translateY(-50px); font-size: 14px; padding: 12px 26px; }
+.pill-btn--3{ transform: translateX(0px) translateY(-50px); font-size: 14px; padding: 12px 26px; }
+.pill-btn--4{ transform: translateX(0px) translateY(-50px); font-size: 14px; padding: 12px 26px; }
+
+
 
 
 /* ---------- TRACKS TITLE (TEXT) MOBILE ---------- */
 .tracks-title{
   font-size: 32px;   /* MOBILE SIZE CONTROL */
   margin-top: 0px;   /* MOBILE MOVE CONTROL */
-  transform: translateX(40px) translateY(360px); /* MOBILE MOVE CONTROL */
+  transform: translateX(70px) translateY(90px); /* MOBILE MOVE CONTROL */
 
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
 }
 
-    /* TRACK SYMBOLS - MOBILE */
-    .symbols-inner{
-    flex-direction: column;
-    gap: 0px;
-    margin-top: 350px;
-    
-    /* optional: force a 2x2 grid look */
-    max-width: 92%;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-    .symbol-logo{
-    height: clamp(100px, 100vw, 400px);
-    width: auto;
-
-    /* stronger glow on mobile if you want */
-    filter:
-        drop-shadow(0 0 10px rgba(57,255,20,0.35))
-        drop-shadow(0 0 18px rgba(0,240,255,0.18));
-}
-
-
+/* TRACK SYMBOLS (MOBILE) */
 
 }
-
